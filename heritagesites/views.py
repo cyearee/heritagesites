@@ -4,8 +4,10 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse,reverse_lazy
+from django_filters.views import FilterView
 from .models import HeritageSite, CountryArea, HeritageSiteJurisdiction # hsj added manually
 from .forms import HeritageSiteForm # added manually 
+from .filters import HeritageSiteFilter
 
 
 def index(request):
@@ -33,6 +35,10 @@ class SiteDetailView(generic.DetailView):
 	model = HeritageSite
 	context_object_name = 'site'
 	template_name = 'heritagesites/site_detail.html'
+
+class SiteFilterView(FilterView):
+	filterset_class = HeritageSiteFilter
+	template_name = 'heritagesites/site_filter.html'
 
 @method_decorator(login_required, name='dispatch')
 class CountryAreaListView(generic.ListView):

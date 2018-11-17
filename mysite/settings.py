@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'social_django',
     'crispy_forms',
     'test_without_migrations',
+    'django_filters',
 ]
 
 # Add a custom test runner for converting unmanaged models to managed before
